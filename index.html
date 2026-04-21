@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpinionGuard — Get 20 New 5-Star Google Reviews in 30 Days | HVAC Review Automation</title>
+<meta name="description" content="Automated review management built for HVAC companies. Get 20 new 5-star Google reviews in 30 days — or your first month is free. Set up in 10 minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #0D9488;
+  --teal-dark: #065F46;
+  --teal-light: #CCFBF1;
+  --teal-bg: #F0FDFA;
+  --gold: #F59E0B;
+  --gold-light: #FEF3C7;
+  --dark: #0F172A;
+  --dark-mid: #1E293B;
+  --gray-700: #334155;
+  --gray-500: #64748B;
+  --gray-300: #CBD5E1;
+  --gray-200: #E2E8F0;
+  --gray-100: #F1F5F9;
+  --white: #FFFFFF;
+  --red: #DC2626;
+  --red-light: #FEF2F2;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04); } }
+.fade-up { animation: fadeUp 0.6s ease both; }
+.fade-up-d1 { animation-delay: 0.1s; }
+.fade-up-d2 { animation-delay: 0.2s; }
+.fade-up-d3 { animation-delay: 0.35s; }
+
+/* NAV */
+nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--gray-100); padding: 0.7rem 0; }
+.nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.logo-shield { width: 34px; height: 34px; }
+.logo-text { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1.25rem; color: var(--dark); }
+.logo-text span { color: var(--teal); }
+.nav-links { display: flex; align-items: center; gap: 1.75rem; }
+.nav-links a { text-decoration: none; font-size: 0.88rem; font-weight: 500; color: var(--gray-700); transition: color 0.2s; }
+.nav-links a:hover { color: var(--teal); }
+.nav-cta { background: var(--teal); color: var(--white) !important; padding: 0.55rem 1.3rem; border-radius: 8px; font-weight: 600 !important; transition: background 0.2s; }
+.nav-cta:hover { background: var(--teal-dark); color: var(--white) !important; }
+@media (max-width: 700px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+/* HERO */
+.hero { padding: 7.5rem 1.5rem 4.5rem; text-align: center; background: linear-gradient(175deg, var(--white) 0%, var(--teal-bg) 100%); position: relative; }
+.hero-inner { max-width: 800px; margin: 0 auto; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--gold-light); color: #92400E; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.06em; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; text-transform: uppercase; }
+.hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.hero h1 { font-family: 'Fraunces', serif; font-size: clamp(2.1rem, 5vw, 3.3rem); font-weight: 800; line-height: 1.14; margin-bottom: 1.25rem; }
+.hero h1 em { font-style: normal; color: var(--teal); position: relative; }
+.hero h1 em::after { content: ''; position: absolute; bottom: 2px; left: 0; right: 0; height: 4px; background: var(--gold); border-radius: 2px; opacity: 0.65; }
+.hero-sub { font-size: 1.12rem; color: var(--gray-700); max-width: 580px; margin: 0 auto 2rem; line-height: 1.7; }
+.hero-cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.btn-primary { display: inline-block; background: var(--teal); color: var(--white); padding: 0.95rem 2.2rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.05rem; transition: all 0.25s; box-shadow: 0 4px 16px rgba(13,148,136,0.25); }
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 6px 22px rgba(13,148,136,0.35); }
+.btn-secondary { display: inline-block; background: var(--white); color: var(--teal); padding: 0.95rem 2.2rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1.05rem; border: 2px solid var(--teal); transition: all 0.2s; }
+.btn-secondary:hover { background: var(--teal-bg); }
+.hero-micro { font-size: 0.82rem; color: var(--gray-500); }
+.hero-trust { margin-top: 2.5rem; }
+.hero-trust p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--gray-500); margin-bottom: 0.75rem; }
+.trust-logos { display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; opacity: 0.5; }
+.trust-logos span { font-family: 'Fraunces', serif; font-weight: 700; font-size: 1rem; color: var(--gray-500); }
+
+/* GUARANTEE BAR */
+.guarantee-bar { background: var(--dark); padding: 1.1rem 1.5rem; text-align: center; }
+.guarantee-bar p { color: var(--white); font-weight: 600; font-size: 0.95rem; max-width: 700px; margin: 0 auto; }
+.guarantee-bar .gold { color: var(--gold); font-weight: 800; }
+
+/* SECTION HELPERS */
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+.section-label.center { text-align: center; }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(1.55rem, 3.5vw, 2.3rem); font-weight: 700; line-height: 1.22; margin-bottom: 1rem; }
+.section-title.center { text-align: center; }
+.section-sub { color: var(--gray-500); font-size: 1rem; max-width: 560px; }
+.section-sub.center { text-align: center; margin-left: auto; margin-right: auto; }
+
+/* PAIN */
+.pain { padding: 5rem 1.5rem; }
+.pain-inner { max-width: 920px; margin: 0 auto; }
+.pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+.pain-card { background: var(--red-light); border: 1px solid #FECACA; border-radius: 14px; padding: 1.5rem; }
+.pain-card .icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
+.pain-card h3 { font-size: 0.95rem; font-weight: 700; color: #991B1B; margin-bottom: 0.35rem; }
+.pain-card p { font-size: 0.87rem; color: #7F1D1D; line-height: 1.55; }
+
+/* REACTIVATION HERO */
+.reactivation { padding: 5rem 1.5rem; background: var(--teal-bg); }
+.reactivation-inner { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.react-content .big-stat { font-family: 'Fraunces', serif; font-size: 3.5rem; font-weight: 800; color: var(--teal); line-height: 1; margin-bottom: 0.25rem; }
+.react-content .big-stat-label { font-size: 0.9rem; color: var(--gray-500); margin-bottom: 1.5rem; }
+.react-content p { font-size: 0.95rem; color: var(--gray-700); line-height: 1.65; margin-bottom: 1rem; }
+.react-visual { background: var(--white); border-radius: 16px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.react-visual h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-500); margin-bottom: 1rem; font-weight: 700; }
+.react-bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.react-bar-label { font-size: 0.8rem; font-weight: 600; width: 60px; text-align: right; }
+.react-bar { height: 28px; border-radius: 6px; display: flex; align-items: center; padding-left: 0.75rem; font-size: 0.75rem; font-weight: 700; color: var(--white); }
+.react-bar.before { background: var(--gray-300); width: 40px; color: var(--gray-700); font-size: 0; }
+.react-bar.after { background: var(--teal); }
+@media (max-width: 700px) { .reactivation-inner { grid-template-columns: 1fr; } }
+
+/* HOW IT WORKS */
+.how { padding: 5rem 1.5rem; background: var(--white); }
+.how-inner { max-width: 920px; margin: 0 auto; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2.5rem; text-align: center; }
+.step-num { display: inline-flex; width: 48px; height: 48px; border-radius: 50%; background: var(--teal); color: var(--white); font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.2rem; align-items: center; justify-content: center; margin-bottom: 0.85rem; }
+.step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.step p { font-size: 0.87rem; color: var(--gray-500); line-height: 1.55; }
+
+/* FEATURES */
+.features { padding: 5rem 1.5rem; background: var(--gray-100); }
+.features-inner { max-width: 960px; margin: 0 auto; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+.feature-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.6rem; transition: all 0.25s; }
+.feature-card:hover { border-color: var(--teal-light); box-shadow: 0 4px 20px rgba(13,148,136,0.07); transform: translateY(-2px); }
+.f-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--teal-bg); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 0.85rem; }
+.feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+.feature-card p { font-size: 0.85rem; color: var(--gray-500); line-height: 1.55; }
+
+/* CASE STUDIES */
+.proof { padding: 5rem 1.5rem; background: var(--white); }
+.proof-inner { max-width: 960px; margin: 0 auto; }
+.proof-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+.proof-card { border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.75rem; background: var(--white); transition: box-shadow 0.25s; }
+.proof-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.proof-card .ba-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.ba-box { flex: 1; padding: 0.6rem 0.5rem; border-radius: 8px; text-align: center; }
+.ba-box.before { background: var(--red-light); }
+.ba-box.after { background: var(--teal-bg); }
+.ba-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.ba-box.before .ba-label { color: var(--red); }
+.ba-box.after .ba-label { color: var(--teal); }
+.ba-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 800; line-height: 1.1; }
+.ba-box.before .ba-num { color: var(--red); }
+.ba-box.after .ba-num { color: var(--teal-dark); }
+.ba-arrow { color: var(--gray-300); font-size: 1.1rem; flex-shrink: 0; }
+.proof-card .stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
+.proof-card blockquote { font-size: 0.88rem; color: var(--gray-700); font-style: italic; line-height: 1.6; margin-bottom: 0.75rem; border: none; padding: 0; }
+.proof-card .attribution { font-size: 0.78rem; font-weight: 700; }
+.proof-card .attribution span { font-weight: 400; color: var(--gray-500); }
+
+/* INTEGRATIONS BAR */
+.integrations { padding: 3.5rem 1.5rem; background: var(--gray-100); text-align: center; }
+.integrations p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: var(--gray-500); margin-bottom: 1rem; }
+.int-logos { display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+.int-logos span { font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--gray-500); opacity: 0.7; }
+.int-note { font-size: 0.8rem; color: var(--gray-500); margin-top: 0.75rem; }
+
+/* PRICING */
+.pricing { padding: 5rem 1.5rem; background: var(--white); }
+.pricing-inner { max-width: 1000px; margin: 0 auto; text-align: center; }
+.pricing-note { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; text-align: left; }
+.price-card { border: 2px solid var(--gray-200); border-radius: 16px; padding: 2rem; position: relative; transition: all 0.25s; }
+.price-card.featured { border-color: var(--teal); box-shadow: 0 8px 30px rgba(13,148,136,0.1); }
+.price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--teal); color: var(--white); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.3rem 1rem; border-radius: 50px; white-space: nowrap; }
+.price-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.2rem; }
+.price-desc { font-size: 0.82rem; color: var(--gray-500); margin-bottom: 1rem; }
+.price-amount { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 800; line-height: 1; }
+.price-period { font-size: 0.82rem; color: var(--gray-500); margin-bottom: 1.25rem; }
+.price-card ul { list-style: none; margin-bottom: 1.5rem; }
+.price-card ul li { font-size: 0.85rem; color: var(--gray-700); padding: 0.35rem 0; padding-left: 1.4rem; position: relative; }
+.price-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+.btn-card { display: block; text-align: center; padding: 0.8rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.92rem; transition: all 0.2s; }
+.btn-card.outline { border: 2px solid var(--teal); color: var(--teal); background: transparent; }
+.btn-card.outline:hover { background: var(--teal-bg); }
+.btn-card.solid { background: var(--teal); color: var(--white); }
+.btn-card.solid:hover { background: var(--teal-dark); }
+.price-footer { margin-top: 1.5rem; font-size: 0.82rem; color: var(--gray-500); line-height: 1.5; }
+
+/* FAQ */
+.faq { padding: 5rem 1.5rem; background: var(--teal-bg); }
+.faq-inner { max-width: 700px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--gray-300); padding: 1.15rem 0; }
+.faq-item:first-child { border-top: 1px solid var(--gray-300); }
+.faq-q { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 600; font-size: 0.95rem; gap: 1rem; user-select: none; }
+.faq-q::after { content: '+'; font-size: 1.4rem; color: var(--teal); flex-shrink: 0; transition: transform 0.2s; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.faq-item.open .faq-a { max-height: 400px; }
+.faq-a p { padding-top: 0.65rem; font-size: 0.88rem; color: var(--gray-500); line-height: 1.6; }
+
+/* FINAL CTA */
+.final-cta { padding: 5rem 1.5rem; background: var(--dark); text-align: center; }
+.final-cta-inner { max-width: 620px; margin: 0 auto; }
+.final-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(1.5rem, 3.5vw, 2.3rem); font-weight: 700; color: var(--white); margin-bottom: 0.75rem; line-height: 1.25; }
+.final-cta p { color: var(--gray-300); margin-bottom: 2rem; font-size: 1rem; }
+.final-cta .btn-primary { background: var(--gold); color: var(--dark); box-shadow: 0 4px 14px rgba(245,158,11,0.3); }
+.final-cta .btn-primary:hover { background: #D97706; box-shadow: 0 6px 20px rgba(245,158,11,0.4); }
+.final-cta .micro { margin-top: 0.75rem; font-size: 0.78rem; color: var(--gray-500); }
+
+/* FOOTER */
+footer { padding: 2rem 1.5rem; background: #0B1120; text-align: center; font-size: 0.78rem; color: var(--gray-500); line-height: 1.8; }
+footer a { color: var(--gray-500); text-decoration: none; }
+footer a:hover { color: var(--gray-300); }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero { padding: 6.5rem 1.25rem 3rem; }
+  .pain-grid, .features-grid, .pricing-grid, .proof-cards, .steps { grid-template-columns: 1fr; }
+  .reactivation-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <svg class="logo-shield" viewBox="0 0 200 200" width="34" height="34">
+        <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0D9488"/><stop offset="100%" style="stop-color:#065F46"/></linearGradient></defs>
+        <path d="M60 45 L100 28 L140 45 L140 100 C140 130 100 155 100 155 C100 155 60 130 60 100 Z" fill="url(#sg)"/>
+        <path d="M80 92 L94 106 L120 74" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <div class="logo-text">Opinion<span>Guard</span></div>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How It Works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#pricing" class="nav-cta">Start Getting Reviews</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner fade-up">
+    <div class="hero-badge"><span class="dot"></span> Built Exclusively for HVAC Companies</div>
+    <h1>Get 20 New 5-Star Google Reviews in <em>30 Days</em></h1>
+    <p class="hero-sub">Your techs do great work. But happy customers aren't leaving reviews — and the unhappy ones are. OpinionGuard texts every customer after service, catches problems before they hit Google, and puts your reviews on autopilot.</p>
+    <div class="hero-cta-row">
+      <a href="#pricing" class="btn-primary">Start Getting Reviews →</a>
+      <a href="#how" class="btn-secondary">See How It Works</a>
+    </div>
+    <p class="hero-micro">Set up in 10 minutes · No meetings required · Cancel anytime</p>
+    <div class="hero-trust">
+      <p>Works with the tools you already use</p>
+      <div class="trust-logos">
+        <span>QuickBooks</span>
+        <span>ServiceTitan</span>
+        <span>Housecall Pro</span>
+        <span>Jobber</span>
+        <span>Zapier</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE BAR -->
+<div class="guarantee-bar">
+  <p>🛡️ <span class="gold">The OpinionGuard Guarantee:</span> Upload 200+ past customers and get 20 new Google reviews in 30 days — or your first month is completely free.</p>
+</div>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="pain-inner">
+    <div class="section-label">Sound Familiar?</div>
+    <h2 class="section-title">Your customers are happy. Your Google reviews don't show it.</h2>
+    <p class="section-sub">You make sure the job is done right. But when it comes time to get a review... crickets.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon">😶</div>
+        <h3>Happy Customers, Zero Reviews</h3>
+        <p>The homeowner says "I'll leave you a review!" — and never does. You've served hundreds of customers but you're stuck at 15 Google reviews.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">📉</div>
+        <h3>Competitors Outranking You</h3>
+        <p>The HVAC company down the street has 200+ reviews. You know your work is better — but homeowners see reviews first and call them instead.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">⏰</div>
+        <h3>Too Busy to Chase Reviews</h3>
+        <p>You're running crews, handling callbacks, ordering parts, and quoting jobs. Asking every customer for a review manually? It never sticks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REACTIVATION HERO SECTION -->
+<section class="reactivation">
+  <div class="reactivation-inner">
+    <div class="react-content">
+      <div class="section-label">Your Secret Weapon</div>
+      <h2 class="section-title">You're sitting on hundreds of reviews you never collected.</h2>
+      <div class="big-stat">10-15%</div>
+      <div class="big-stat-label">of your past customers will leave a review when we reach out</div>
+      <p>Every HVAC customer you've ever served is a potential 5-star review. When you upload your past customer list, OpinionGuard sends personalized review requests over time — making it look natural to Google while turning old customers into fresh reviews.</p>
+      <p><strong>If you have 500 past customers, expect 50-75 new reviews in the first few weeks.</strong> Most HVAC companies see results within 24 hours of launching their reactivation.</p>
+    </div>
+    <div class="react-visual">
+      <h4>Review Reactivation Results</h4>
+      <div class="react-bar-row">
+        <div class="react-bar-label">Before</div>
+        <div class="react-bar before" style="width: 30px;"></div>
+        <span style="font-size:0.8rem; font-weight:700; color:var(--gray-500);">12 reviews</span>
+      </div>
+      <div class="react-bar-row">
+        <div class="react-bar-label">Week 1</div>
+        <div class="react-bar after" style="width: 100px;">+28</div>
+      </div>
+      <div class="react-bar-row">
+        <div class="react-bar-label">Week 2</div>
+        <div class="react-bar after" style="width: 150px;">+42</div>
+      </div>
+      <div class="react-bar-row">
+        <div class="react-bar-label">Week 4</div>
+        <div class="react-bar after" style="width: 200px;">+63</div>
+      </div>
+      <div class="react-bar-row">
+        <div class="react-bar-label">Month 3</div>
+        <div class="react-bar after" style="width: 260px;">+97</div>
+      </div>
+      <p style="font-size: 0.75rem; color: var(--gray-500); margin-top: 0.5rem; font-style: italic;">Based on HVAC company with 600 past customers + 40 new jobs/month</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-label center">How It Works</div>
+    <h2 class="section-title center">Set it up once. Reviews flow in forever.</h2>
+    <p class="section-sub center">No meetings. No tech skills needed. You'll be live in 10 minutes.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Connect & Upload</h3>
+        <p>Link your Google Business Profile and upload your customer list. We provide step-by-step export guides for QuickBooks, ServiceTitan, Housecall Pro, and Jobber.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Reactivation Fires</h3>
+        <p>OpinionGuard reaches out to your past customers with personalized review requests. Reviews start flowing in within 24 hours — no effort from you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Every Job Gets Followed Up</h3>
+        <p>After every service call, customers automatically get a text. Happy ones (8-10 rating) go straight to Google. Unhappy ones get routed to private feedback.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>We Handle the Rest</h3>
+        <p>AI responds to your Google reviews. You get alerts for unhappy customers. Monthly reports show your growth. You never think about reviews again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-inner">
+    <div class="section-label center">Everything Included</div>
+    <h2 class="section-title center">One tool replaces your entire review process.</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="f-icon">📲</div>
+        <h3>Automated SMS + Email Requests</h3>
+        <p>Tested, proven templates sent after every job. Your customers get a friendly, branded message — not a generic review link.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🛡️</div>
+        <h3>Smart Rating Gate</h3>
+        <p>Customers rate you 1-10. Scores 8+ go to Google. Scores 1-7 go to a private feedback form. Bad reviews stopped before they're posted.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🔄</div>
+        <h3>Past Customer Reactivation</h3>
+        <p>Upload your old customer list and we drip out requests over time. Expect 10-15% to leave reviews. Your biggest growth lever on day one.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🤖</div>
+        <h3>AI Review Responses</h3>
+        <p>Every positive Google review gets a personalized, human-sounding reply. Saves you hours every week and shows customers you care.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🚨</div>
+        <h3>Instant Negative Alerts</h3>
+        <p>Get a text the moment a customer rates you low. Reach out and fix it before they ever touch Google. Turn problems into loyalty.</p>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📊</div>
+        <h3>Reputation Dashboard & Reports</h3>
+        <p>See review count, average rating, response rates, and trends at a glance. Monthly email reports keep you informed without logging in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="proof">
+  <div class="proof-inner">
+    <div class="section-label center">Real Results</div>
+    <h2 class="section-title center">HVAC companies like yours are stacking reviews.</h2>
+    <p class="section-sub center" style="margin-bottom: 0;">Here's what happens when you stop hoping for reviews and start automating them.</p>
+    <div class="proof-cards">
+      <div class="proof-card">
+        <div class="ba-row">
+          <div class="ba-box before"><div class="ba-label">Before</div><div class="ba-num">14</div></div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-box after"><div class="ba-label">After 60 Days</div><div class="ba-num">89</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"We went from invisible on Google to the #1 reviewed HVAC company in our area. Customers call and say they picked us because of reviews."</blockquote>
+        <div class="attribution">Mike R. <span>· 3-truck HVAC, Texas</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="ba-row">
+          <div class="ba-box before"><div class="ba-label">Before</div><div class="ba-num">31</div></div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-box after"><div class="ba-label">After 90 Days</div><div class="ba-num">148</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"I tried asking my techs to get reviews. It never stuck. OpinionGuard runs in the background — reviews come in every single day now."</blockquote>
+        <div class="attribution">Sarah T. <span>· 8-truck HVAC, Florida</span></div>
+      </div>
+      <div class="proof-card">
+        <div class="ba-row">
+          <div class="ba-box before"><div class="ba-label">Before</div><div class="ba-num">6</div></div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-box after"><div class="ba-label">After 30 Days</div><div class="ba-num">34</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <blockquote>"Brand new HVAC business, barely any reviews. OpinionGuard reached out to my past customers and I had 28 new reviews in the first week."</blockquote>
+        <div class="attribution">Jason K. <span>· Solo HVAC tech, Ohio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="integrations">
+  <p>Connects With Your Existing Tools In Minutes</p>
+  <div class="int-logos">
+    <span>QuickBooks</span>
+    <span>ServiceTitan</span>
+    <span>Housecall Pro</span>
+    <span>Jobber</span>
+    <span>Workiz</span>
+    <span>Square</span>
+    <span>Zapier</span>
+  </div>
+  <p class="int-note">Plus 6,000+ more apps via Zapier. Or just upload a CSV — we provide a dead-simple template.</p>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-label">Simple, Transparent Pricing</div>
+    <h2 class="section-title">Pick your plan. Start getting reviews today.</h2>
+    <p class="pricing-note">All plans include unlimited review requests, our 30-day guarantee, and no long-term contracts. We're easy to work with and easy to cancel — no hoops, no calls, just a click.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Guard Starter</h3>
+        <p class="price-desc">Solo HVAC techs & new businesses</p>
+        <div class="price-amount">$97</div>
+        <div class="price-period">/month</div>
+        <ul>
+          <li>Unlimited review requests</li>
+          <li>Smart rating gate</li>
+          <li>Past customer reactivation</li>
+          <li>AI review responses</li>
+          <li>Negative feedback alerts</li>
+          <li>Reputation dashboard</li>
+          <li>Review widget for your website</li>
+        </ul>
+        <a href="#" class="btn-card outline">Start Getting Reviews</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Guard Pro</h3>
+        <p class="price-desc">Growing companies · 2-10 trucks</p>
+        <div class="price-amount">$197</div>
+        <div class="price-period">/month</div>
+        <ul>
+          <li>Everything in Starter, plus:</li>
+          <li>Missed call text-back</li>
+          <li>Monthly reputation report email</li>
+          <li>Review social media posting</li>
+          <li>Multi-platform review requests</li>
+          <li>Priority support</li>
+          <li>Dedicated setup assistance</li>
+        </ul>
+        <a href="#" class="btn-card solid">Start Getting Reviews</a>
+      </div>
+      <div class="price-card">
+        <h3>Guard Premium</h3>
+        <p class="price-desc">Multi-location & full CRM needs</p>
+        <div class="price-amount">$397</div>
+        <div class="price-period">/month</div>
+        <ul>
+          <li>Everything in Pro, plus:</li>
+          <li>Full CRM & pipeline management</li>
+          <li>Multi-location support</li>
+          <li>Advanced analytics & reporting</li>
+          <li>Custom workflow automation</li>
+          <li>API access & integrations</li>
+          <li>White-glove setup</li>
+        </ul>
+        <a href="#" class="btn-card outline">Start Getting Reviews</a>
+      </div>
+    </div>
+    <p class="price-footer">All plans include a small SMS/email delivery cost (typically under $5/month) based on your customer volume. This covers our actual carrier costs — we don't mark it up. No hidden fees, ever.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <h2 class="section-title center" style="margin-bottom: 2.5rem;">Questions? Answers.</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">How does the 20-review guarantee work?</div>
+      <div class="faq-a"><p>Upload at least 200 past customer contacts when you set up. If you don't have 20 new Google reviews within 30 days, your entire first month is free. No fine print, no forms to fill out — we just don't charge you.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How long does setup actually take?</div>
+      <div class="faq-a"><p>About 10 minutes. Connect your Google Business Profile, upload your customer list (we have export guides for QuickBooks, ServiceTitan, Housecall Pro, and Jobber), and customize your message. No meetings required. If you'd prefer someone to walk you through it, our Pro and Premium plans include setup help via text/email.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What if a customer is unhappy?</div>
+      <div class="faq-a"><p>That's exactly what OpinionGuard is designed for. Customers who rate you 1-7 get routed to a private feedback form — not Google. You get an instant text alert so you can reach out and fix the issue before it becomes a public review. It's better customer service AND better reputation management.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does this work with my CRM or invoicing software?</div>
+      <div class="faq-a"><p>Yes. We integrate directly with QuickBooks, ServiceTitan, Housecall Pro, Jobber, Workiz, Square, and thousands more via Zapier. If your software isn't listed, you can simply upload a CSV — we provide a simple template with just 3 columns (Name, Phone, Email).</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is there a contract?</div>
+      <div class="faq-a"><p>No. Month-to-month, cancel anytime with a click in your dashboard. We're easy to work with and easy to get rid of — but our customers stick around because they see results every month.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Won't customers get annoyed by the texts?</div>
+      <div class="faq-a"><p>Our messages are sent once after service — when satisfaction is highest. They're friendly and personal, with your company name. Follow-ups are gentle and spaced out. We've optimized our templates based on what actually gets reviews without annoying people.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What about the $5/month SMS cost mentioned in pricing?</div>
+      <div class="faq-a"><p>Text messages and emails have a small carrier cost. Rather than bake it into a higher price, we pass through the actual cost — typically under $5/month depending on your customer volume. We don't mark it up or make money on it. Most customers don't even notice it.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is review gating against Google's policy?</div>
+      <div class="faq-a"><p>We don't gate reviews — every customer gets asked. The rating step helps you identify unhappy customers so you can address their concerns personally, which is better customer service. Happy customers get directed to Google. Google encourages businesses to ask all customers for reviews, and that's what we do.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How many reviews should I expect?</div>
+      <div class="faq-a"><p>During the initial reactivation, expect 10-15% of past customers to leave a review. For new customers post-service, we typically see 20-30% review rates, with many HVAC companies seeing over 50%. Your results depend on your customer volume and the quality of your service — but if you're doing good work, the reviews will show it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Your competitors are getting reviews on autopilot. Every day without them costs you jobs.</h2>
+    <p>Start your free trial. Set up in 10 minutes. If we don't deliver 20 reviews in 30 days, you don't pay.</p>
+    <a href="#pricing" class="btn-primary">Start Getting Reviews →</a>
+    <p class="micro">No credit card required · No meetings · Cancel anytime</p>
+  </div>
+</section>
+
+<!-- SMS OPT-IN FORM — CONNECTED TO GHL WEBHOOK -->
+<section style="padding: 3rem 1.5rem; background: #F1F5F9;" id="signup">
+  <div style="max-width: 540px; margin: 0 auto; background: #fff; border: 1px solid #E2E8F0; border-radius: 14px; padding: 2rem;">
+    <form id="opinionguard-signup" onsubmit="return handleSignup(event)">
+      <h3 style="font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 0.25rem;">Start Your Free Trial</h3>
+      <p style="text-align: center; font-size: 0.85rem; color: #64748B; margin-bottom: 1.5rem;">Get 20 new Google reviews in 30 days — or your first month is free.</p>
+      
+      <div class="form-field" style="margin-bottom: 1rem;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.3rem;">Business Name</label>
+        <input type="text" id="field-business" placeholder="ABC Heating & Cooling" required style="width: 100%; padding: 0.7rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+      </div>
+      <div class="form-field" style="margin-bottom: 1rem;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.3rem;">Your Name</label>
+        <input type="text" id="field-name" placeholder="John Smith" required style="width: 100%; padding: 0.7rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+      </div>
+      <div class="form-field" style="margin-bottom: 1rem;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.3rem;">Email</label>
+        <input type="email" id="field-email" placeholder="john@abcheating.com" required style="width: 100%; padding: 0.7rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+      </div>
+      <div class="form-field" style="margin-bottom: 1.25rem;">
+        <label style="font-size: 0.82rem; font-weight: 600; display: block; margin-bottom: 0.3rem;">Phone Number</label>
+        <input type="tel" id="field-phone" placeholder="(555) 123-4567" required style="width: 100%; padding: 0.7rem; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+      </div>
+
+      <!-- SMS CONSENT CHECKBOX - NOT PRE-CHECKED -->
+      <div class="form-field" style="margin-bottom: 1.25rem;">
+        <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer;">
+          <input type="checkbox" id="field-sms-consent" required style="margin-top: 3px; width: 18px; height: 18px; flex-shrink: 0;">
+          <span style="font-size: 0.75rem; color: #64748B; line-height: 1.5;">I agree to receive SMS messages and emails from OpinionGuard (operated by Utmost Inc). Message types include account notifications, onboarding updates, and service-related communications. Message frequency varies based on account activity. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for assistance. Consent is not a condition of purchase. View our <a href="/privacy-policy.html" style="color: #0D9488;">Privacy Policy</a> and <a href="/terms-of-service.html" style="color: #0D9488;">Terms of Service</a>.</span>
+        </label>
+      </div>
+
+      <button type="submit" id="signup-btn" style="width: 100%; padding: 0.9rem; background: #0D9488; color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;">
+        <span id="btn-text">Start Getting Reviews →</span>
+        <span id="btn-loading" style="display:none;">Submitting...</span>
+      </button>
+      <p class="form-field" style="text-align: center; font-size: 0.75rem; color: #94A3B8; margin-top: 0.75rem;">No credit card required to start. Cancel anytime.</p>
+    </form>
+
+    <!-- Success message (hidden by default) -->
+    <div id="signup-success" style="display:none; text-align:center; padding: 1.5rem 0;">
+      <div style="width:56px; height:56px; border-radius:50%; background:#CCFBF1; display:inline-flex; align-items:center; justify-content:center; margin-bottom:1rem;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0D9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 style="font-family:'Fraunces',serif; font-size:1.3rem; font-weight:700; margin-bottom:0.5rem;">You're in!</h3>
+      <p style="font-size:0.9rem; color:#64748B; line-height:1.6;">We'll reach out within 24 hours to get your reviews flowing.<br>Check your email for next steps.</p>
+    </div>
+
+    <!-- Error message (hidden by default) -->
+    <div id="signup-error" style="display:none; text-align:center; padding:0.75rem; background:#FEF2F2; border:1px solid #FECACA; border-radius:8px; margin-top:1rem;">
+      <p style="font-size:0.85rem; color:#991B1B; margin:0;">Something went wrong. Please try again or email us at <a href="mailto:hello@opinionguard.com" style="color:#0D9488;">hello@opinionguard.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 OpinionGuard (Utmost Inc). All rights reserved. &nbsp;|&nbsp; <a href="/terms-of-service.html">Terms of Service</a> &nbsp;|&nbsp; <a href="/privacy-policy.html">Privacy Policy</a></p>
+  <p>hello&#64;opinionguard.com</p>
+  <p style="margin-top:0.5rem; font-size:0.7rem;">This site is not a part of the Facebook&trade; website or Facebook Inc. Additionally, this site is NOT endorsed by Facebook&trade; in any way. FACEBOOK&trade; is a trademark of FACEBOOK&trade;, Inc.</p>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// GHL Webhook Signup Handler
+const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/eptfxOHgFw3OdkdqouLu/webhook-trigger/6d0b5936-18fb-43c4-8801-436ec24781e1';
+
+async function handleSignup(e) {
+  e.preventDefault();
+
+  const form = document.getElementById('opinionguard-signup');
+  const btn = document.getElementById('signup-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnLoading = document.getElementById('btn-loading');
+  const successDiv = document.getElementById('signup-success');
+  const errorDiv = document.getElementById('signup-error');
+
+  // Reset states
+  successDiv.style.display = 'none';
+  errorDiv.style.display = 'none';
+
+  // Show loading
+  btnText.style.display = 'none';
+  btnLoading.style.display = 'inline';
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  const payload = {
+    company_name: document.getElementById('field-business').value.trim(),
+    full_name:    document.getElementById('field-name').value.trim(),
+    email:        document.getElementById('field-email').value.trim(),
+    phone:        document.getElementById('field-phone').value.trim(),
+    sms_consent:  document.getElementById('field-sms-consent').checked ? 'yes' : 'no',
+    source:       'opinionguard-website',
+    tags:         'new-signup'
+  };
+
+  try {
+    const response = await fetch(GHL_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (response.ok) {
+      // Hide form, show success
+      form.style.display = 'none';
+      successDiv.style.display = 'block';
+
+      // Facebook Pixel event (if pixel is installed)
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_name: 'OpinionGuard Trial Signup',
+          content_category: 'HVAC Review Management',
+        });
+      }
+      // Google Analytics event (if GA is installed)
+      if (typeof gtag === 'function') {
+        gtag('event', 'sign_up', { method: 'website_form' });
+      }
+    } else {
+      throw new Error('Webhook returned ' + response.status);
+    }
+  } catch (err) {
+    console.error('Signup error:', err);
+    errorDiv.style.display = 'block';
+  } finally {
+    btnText.style.display = 'inline';
+    btnLoading.style.display = 'none';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+
+  return false;
+}
+</script>
+</body>
+</html>
