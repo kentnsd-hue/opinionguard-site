@@ -694,6 +694,18 @@ async function handleSignup(e) {
   };
 
   try {
+    // Fire Facebook Pixel Lead event immediately on submit
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'OpinionGuard Trial Signup',
+        content_category: 'HVAC Review Management',
+      });
+    }
+    // Google Analytics event
+    if (typeof gtag === 'function') {
+      gtag('event', 'sign_up', { method: 'website_form' });
+    }
+
     const response = await fetch(GHL_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -704,18 +716,6 @@ async function handleSignup(e) {
       // Hide form, show success
       form.style.display = 'none';
       successDiv.style.display = 'block';
-
-      // Facebook Pixel event (if pixel is installed)
-      if (typeof fbq === 'function') {
-        fbq('track', 'Lead', {
-          content_name: 'OpinionGuard Trial Signup',
-          content_category: 'HVAC Review Management',
-        });
-      }
-      // Google Analytics event (if GA is installed)
-      if (typeof gtag === 'function') {
-        gtag('event', 'sign_up', { method: 'website_form' });
-      }
     } else {
       throw new Error('Webhook returned ' + response.status);
     }
