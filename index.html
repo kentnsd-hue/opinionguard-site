@@ -604,6 +604,12 @@ footer a:hover { color: var(--gray-300); }
         </label>
       </div>
 
+      <!-- HONEYPOT: invisible to real users, only bots fill this. Position-absolute off-screen with aria-hidden so it's also screen-reader silent. -->
+      <div aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; height: 0; width: 0; overflow: hidden; opacity: 0; pointer-events: none;">
+        <label for="field-website-url">Website (leave blank)</label>
+        <input type="text" name="website_url" id="field-website-url" tabindex="-1" autocomplete="off">
+      </div>
+
       <button type="submit" id="signup-btn" style="width: 100%; padding: 0.9rem; background: #0D9488; color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;">
         <span id="btn-text">Start Getting Reviews →</span>
         <span id="btn-loading" style="display:none;">Submitting...</span>
@@ -646,6 +652,11 @@ document.querySelectorAll('.faq-q').forEach(q => {
 });
 // GHL Webhook Signup Handler
 const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/eptfxOHgFw3OdkdqouLu/webhook-trigger/6d0b5936-18fb-43c4-8801-436ec24781e1';
+
+// Track when the form first becomes interactive, for time-based bot detection.
+// Bots typically submit in milliseconds; humans take 8+ seconds.
+const FORM_LOAD_TIME = Date.now();
+
 async function handleSignup(e) {
   e.preventDefault();
   const form = document.getElementById('opinionguard-signup');
@@ -654,6 +665,19 @@ async function handleSignup(e) {
   const btnLoading = document.getElementById('btn-loading');
   const successDiv = document.getElementById('signup-success');
   const errorDiv = document.getElementById('signup-error');
+
+  // SPAM PROTECTION: honeypot field + minimum-time-on-page check.
+  // If either trips, silently show the success state to confuse the bot
+  // without sending anything to the webhook.
+  const honeypot = document.getElementById('field-website-url');
+  const elapsed = Date.now() - FORM_LOAD_TIME;
+  if ((honeypot && honeypot.value !== '') || elapsed < 1500) {
+    console.log('[opinionguard] submission blocked (honeypot or timing)', { honeypot: honeypot && honeypot.value, elapsed });
+    form.style.display = 'none';
+    successDiv.style.display = 'block';
+    return false;
+  }
+
   // Reset states
   successDiv.style.display = 'none';
   errorDiv.style.display = 'none';
